@@ -50,7 +50,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\BadgeColumn::make('team')
+                    ->enum(TeamEnum::getAllValues()),
             ])
             ->filters([
                 //
