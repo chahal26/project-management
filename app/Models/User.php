@@ -46,6 +46,10 @@ class User extends Authenticatable implements  HasAvatar
         'email_verified_at' => 'datetime',
     ];
 
+    public function users(){
+        return $this->belongsToMany(Task::class);
+    }
+
     public function getFilamentAvatarUrl(): ?string
     {
         $image = '';
