@@ -53,7 +53,8 @@ class UserResource extends Resource
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\BadgeColumn::make('team')
-                    ->enum(TeamEnum::getAllValues()),
+                    ->enum(TeamEnum::getAllValues())
+                    ->colors(TeamEnum::getAllValuesColor()),
             ])
             ->filters([
                 //
