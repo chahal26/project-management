@@ -20,14 +20,21 @@ class TasksRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('description')
-                    ->required(),
-                Forms\Components\MultiSelect::make('users')
-                    ->relationship('users', 'name'),
-                Forms\Components\DateTimePicker::make('deadline')
+                Forms\Components\Fieldset::make('Task Details')
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('description')
+                            ->required(),
+                    ])
+                    ->columns(1),
+                Forms\Components\Fieldset::make('Assigning Details')
+                    ->schema([
+                        Forms\Components\MultiSelect::make('users')
+                            ->relationship('users', 'name'),
+                        Forms\Components\DateTimePicker::make('deadline')
+                    ]),
             ]);
     }
 
@@ -35,7 +42,8 @@ class TasksRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('deadline'),
             ])
             ->filters([
                 //
